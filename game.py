@@ -106,11 +106,14 @@ def gameover(game_over, score):
     screen.blit(label,(int(WIDTH/2)-150,int(HEIGHT/2)+20))
 
 running = True
+#main loop
 while(running == True):
     if game_over==False:
         for event in pygame.event.get():
+			#processing end event
             if event.type==pygame.QUIT:
                 sys.exit()
+			#processing key event
             if event.type==pygame.KEYDOWN:
                 x=player_pos[0]
                 y=player_pos[1]
@@ -126,6 +129,7 @@ while(running == True):
                 elif event.key==pygame.K_DOWN:
                 	if(y<500):
                 		y+=player_size+10
+				#player location update
                 player_pos=[x,y]
         screen.blit(background,(0,0))
         game_over=collision(player_pos,enemy_pos)
