@@ -116,7 +116,6 @@ def play_music(score):
 	chk1 = score % 40
 	chk2 = score // 40
 	if chk1 == 0:
-		time.sleep(1)
 		if chk2 % 4 == 1:
 			pygame.mixer.stop()
 			time.sleep(1)
