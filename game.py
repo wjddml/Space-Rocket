@@ -117,16 +117,16 @@ def play_music(score):
 	chk2 = score // 100
 	if chk1 == 0:
 		if chk2 % 4 == 1:
-			backsound1.stop()
+			pygame.mixer.stop()
 			backsound2.play(-1)
 		elif chk2 % 4 == 2:
-			backsound2.stop()
+			pygame.mixer.stop()
 			backsound3.play(-1)
 		elif chk2 % 4 == 3:
-			backsound3.stop()
+			pygame.mixer.stop()
 			backsound4.play(-1)
 		elif chk2 % 4 == 0:
-			backsound4.stop()
+			pygame.mixer.stop()
 			backsound1.play(-1)
 
 running = True
