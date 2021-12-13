@@ -155,7 +155,7 @@ while(running == True):
         game_over=collision(player_pos,enemy_pos)
         drop_enemies(enemy_list)
         score=new_enemy_pos(enemy_list, score)
-		play_music(score)
+        play_music(score)
         enemy_speed=speed(score, enemy_speed)
         text="Your Score: "+str(score)
         label=myFont.render(text, 1, (204, 255, 51))
