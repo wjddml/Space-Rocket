@@ -35,8 +35,14 @@ enemy_speed=0
 background = pygame.image.load("Images/background.png")
 
 #background sound
-mixer.music.load("Sounds/background.ogg")
-mixer.music.play(-1)
+#more background sound
+backsound1 = pygame.mixer.Sound("Sounds/background1.ogg")
+backsound2 = pygame.mixer.Sound("Sounds/background2.ogg")
+backsound3 = pygame.mixer.Sound("Sounds/background3.ogg")
+backsound4 = pygame.mixer.Sound("Sounds/background4.ogg")
+backsound1.play(-1)
+
+
 
 #basic
 score=0
@@ -91,7 +97,7 @@ def collision(player_pos, enemy_pos):
     if (e_x>=p_x and e_x<(p_x+player_size)) or (p_x>=e_x and p_x<(e_x+enemy_size)):
         if(e_y>=p_y and e_y<(p_y+player_size)) or (p_y>=e_y and p_y<(e_y+enemy_size)):
             explosion=mixer.Sound("Sounds/explosion.wav")
-            mixer.music.stop()
+            pygame.mixer.stop()
             explosion.play()
             return True
     return False
@@ -104,6 +110,24 @@ def gameover(game_over, score):
     text="Your Score: "+str(score)
     label=game_over_font.render(text, 1, (255, 153, 102))
     screen.blit(label,(int(WIDTH/2)-150,int(HEIGHT/2)+20))
+
+#background music function
+def play_music(score):
+	chk1 = score % 100
+	chk2 = score // 100
+	if chk1 == 0:
+		if chk2 % 4 == 1:
+			backsound1.stop()
+			backsound2.play(-1)
+		elif chk2 % 4 == 2:
+			backsound2.stop()
+			backsound3.play(-1)
+		elif chk2 % 4 == 3:
+			backsound3.stop()
+			backsound4.play(-1)
+		elif chk2 % 4 == 0:
+			backsound4.stop()
+			backsound1.play(-1)
 
 running = True
 while(running == True):
@@ -131,6 +155,7 @@ while(running == True):
         game_over=collision(player_pos,enemy_pos)
         drop_enemies(enemy_list)
         score=new_enemy_pos(enemy_list, score)
+		play_music(score)
         enemy_speed=speed(score, enemy_speed)
         text="Your Score: "+str(score)
         label=myFont.render(text, 1, (204, 255, 51))
