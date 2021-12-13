@@ -113,8 +113,8 @@ def gameover(game_over, score):
 
 #background music function
 def play_music(score):
-	chk1 = score % 40
-	chk2 = score // 40
+	chk1 = score % 20
+	chk2 = score // 20
 	if chk1 == 0:
 		if chk2 % 4 == 1:
 			pygame.mixer.stop()
